@@ -6,3 +6,7 @@
 .hidden{
     /*display: none !important;*/
 }
+
+#btCSV {
+    margin-left: 5px;
+}
