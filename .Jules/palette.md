@@ -1,0 +1,3 @@
+## 2024-05-17 - [Accessibility & Form Structure]
+**Learning:** Found a pattern where `<label>` was incorrectly used as a container for multiple interactive elements (`<select>` and `<input type="submit">`), which breaks proper label-element association and confuses screen readers. Also, Unicode symbols (like &#8680;) used in buttons lack descriptive text for non-sighted users.
+**Action:** Always separate `<label>` from the elements they describe using the `for` attribute, and provide `aria-label` for buttons that use symbols or icons instead of clear text. Use WordPress i18n functions (`__()`, `_e()`) for all user-facing strings to ensure accessibility across different locales.
