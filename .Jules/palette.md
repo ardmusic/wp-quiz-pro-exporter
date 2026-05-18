@@ -1,0 +1,3 @@
+## 2025-05-14 - [WordPress Plugin Admin Accessibility]
+**Learning:** Admin forms in WordPress plugins often nest interactive elements like <select> and submit buttons inside a single <label> tag, which is detrimental to screen reader accessibility and semantic HTML. Additionally, icon-only or symbol-heavy buttons (like those using Unicode arrows) lack descriptive context for non-visual users.
+**Action:** Always decouple interactive elements from <label> tags, ensuring each label is explicitly associated with a single input via the 'for' attribute. Provide descriptive 'aria-label' attributes for buttons that use symbols or icons.
