@@ -1,0 +1,3 @@
+## 2025-05-22 - Improving Export Accessibility and Feedback
+**Learning:** Nesting interactive elements like `<select>` inside a `<label>` can lead to poor screen reader behavior and click/focus ambiguity. Additionally, long-running processes like CSV generation require immediate visual feedback and state management (disabling the button) to prevent duplicate submissions and provide a smooth user experience.
+**Action:** Always un-nest interactive elements from labels and use the `for` attribute. Implement a temporary 'disabled' state with a loading indicator for asynchronous or download-triggering actions. Use `wp_localize_script` to ensure these UI feedback strings are translatable.
