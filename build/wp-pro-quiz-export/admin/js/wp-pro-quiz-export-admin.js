@@ -13,6 +13,27 @@
                 $("#btCSV").fadeIn(300);
             }
         });
+
+        $("#btCSV").click(function() {
+            var $this = $(this);
+            var originalValue = $this.val();
+            var exportingText = (typeof wpProQuizExportAdmin !== 'undefined' && wpProQuizExportAdmin.l10n)
+                                ? wpProQuizExportAdmin.l10n.exporting
+                                : 'Exporting...';
+
+            $this.val(exportingText).prop('disabled', true);
+
+            // Revert back after a short delay since it's a form submission that triggers a download
+            // Disabling the button might prevent form submission in some browsers if done instantly,
+            // but usually it works if it's already triggered.
+            // We use a timeout to re-enable it so the user can try again if the download fails or for next time.
+            setTimeout(function() {
+                $this.val(originalValue).prop('disabled', false);
+            }, 5000);
+
+            // Ensure the form is actually submitted before disabling if needed,
+            // but click handler on submit button usually runs just before submission.
+        });
     });
 
     /**
