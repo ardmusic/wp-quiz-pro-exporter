@@ -2,16 +2,33 @@
     'use strict';
 
     $(function () {
-        if ($("select[id$='-quiz']").val() == 0) {
-            $("#btCSV").hide();
+        var $quizSelect = $("select[id$='-quiz']");
+        var $exportButton = $("#btCSV");
+
+        if ($quizSelect.val() == 0) {
+            $exportButton.hide();
         }
-        $("select[id$='-quiz']").change(function () {
+
+        $quizSelect.change(function () {
             if ($(this).val() == 0) {
-                $("#btCSV").fadeOut(100);
+                $exportButton.fadeOut(100);
             }
             else {
-                $("#btCSV").fadeIn(300);
+                $exportButton.prop('disabled', false).val('\u21E8 CSV').fadeIn(300);
             }
+        });
+
+        $exportButton.click(function () {
+            var $btn = $(this);
+            var loadingText = (typeof wpProQuizExportAdmin !== 'undefined' && wpProQuizExportAdmin.exporting) ? wpProQuizExportAdmin.exporting : 'Exporting...';
+
+            $btn.prop('disabled', true).val(loadingText);
+
+            // The form will submit naturally. We don't preventDefault() here.
+            // Since it's a file download, the page usually doesn't reload,
+            // so we might want a way to re-enable it, but for now this provides
+            // the requested "loading" feedback.
+            $btn.closest('form').submit();
         });
     });
 
