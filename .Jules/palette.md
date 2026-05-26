@@ -1,0 +1,3 @@
+## 2025-05-14 - [Form Feedback and Accessibility]
+**Learning:** For actions like CSV downloads that don't trigger a page reload, the UI must manually reset after a timeout or alternative event to avoid leaving the user stuck in a "loading" state. Additionally, nesting interactive elements inside `<label>` tags can cause issues with screen readers and focus management; it's better to use the `for` attribute.
+**Action:** Use `setTimeout` (e.g., 2000ms) to re-enable download buttons after providing a "loading" state. Ensure labels are correctly associated with their inputs via IDs and avoid wrapping multiple interactives.
