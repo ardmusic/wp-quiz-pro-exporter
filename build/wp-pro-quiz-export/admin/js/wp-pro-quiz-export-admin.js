@@ -13,6 +13,25 @@
                 $("#btCSV").fadeIn(300);
             }
         });
+
+        var $btn = $('#btCSV');
+        var originalValue = $btn.val();
+
+        $btn.on('click', function () {
+            var $this = $(this);
+
+            // Use setTimeout to allow the form to submit before disabling the button
+            setTimeout(function () {
+                $this.prop('disabled', true);
+                $this.val(wpProQuizExportAdmin.l10n.exporting);
+
+                // Restore the button after 2 seconds since the download won't reload the page
+                setTimeout(function () {
+                    $this.prop('disabled', false);
+                    $this.val(originalValue);
+                }, 2000);
+            }, 0);
+        });
     });
 
     /**
