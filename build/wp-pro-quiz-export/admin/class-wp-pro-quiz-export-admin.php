@@ -96,6 +96,9 @@ class Wp_Pro_Quiz_Export_Admin
          * class.
          */
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/wp-pro-quiz-export-admin.js', array('jquery'), $this->version, false);
+        wp_localize_script($this->plugin_name, 'wpProQuizExportAdmin', array(
+            'exporting' => __('Exporting...', 'wp-pro-quiz-export'),
+        ));
     }
 
     /**
@@ -105,7 +108,7 @@ class Wp_Pro_Quiz_Export_Admin
      */
     function wp_quiz_pro_export_menu()
     {
-        add_submenu_page('wpProQuiz', 'CSV Export utility', 'Statistics &#8680; CSV', 'manage_options', $this->plugin_name, array($this, 'display_plugin_page'), '', 7);
+        add_submenu_page('wpProQuiz', __('CSV Export utility', 'wp-pro-quiz-export'), __('Statistics &#8680; CSV', 'wp-pro-quiz-export'), 'manage_options', $this->plugin_name, array($this, 'display_plugin_page'), '', 7);
     }
 
     function wp_quiz_pro_export_csv()
