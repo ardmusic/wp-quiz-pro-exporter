@@ -2,45 +2,31 @@
     'use strict';
 
     $(function () {
-        if ($("select[id$='-quiz']").val() == 0) {
-            $("#btCSV").hide();
+        var $quizSelect = $("select[id$='-quiz']");
+        var $exportBtn = $("#btCSV");
+        var originalBtnValue = $exportBtn.val();
+
+        if ($quizSelect.val() == 0) {
+            $exportBtn.hide();
         }
-        $("select[id$='-quiz']").change(function () {
+
+        $quizSelect.change(function () {
             if ($(this).val() == 0) {
-                $("#btCSV").fadeOut(100);
+                $exportBtn.fadeOut(100);
             }
             else {
-                $("#btCSV").fadeIn(300);
+                $exportBtn.fadeIn(300);
             }
         });
-    });
 
-    /**
-     * All of the code for your admin-facing JavaScript source
-     * should reside in this file.
-     *
-     * Note: It has been assumed you will write jQuery code here, so the
-     * $ function reference has been prepared for usage within the scope
-     * of this function.
-     *
-     * This enables you to define handlers, for when the DOM is ready:
-     *
-     * $(function() {
-     *
-     * });
-     *
-     * When the window is loaded:
-     *
-     * $( window ).load(function() {
-     *
-     * });
-     *
-     * ...and/or other possibilities.
-     *
-     * Ideally, it is not considered best practise to attach more than a
-     * single DOM-ready or window-load handler for a particular page.
-     * Although scripts in the WordPress core, Plugins and Themes may be
-     * practising this, we should strive to set a better example in our own work.
-     */
+        $exportBtn.closest('form').on('submit', function () {
+            $exportBtn.prop('disabled', true).val(wpProQuizExportAdmin.exporting);
+
+            // Re-enable after a timeout since the download doesn't refresh the page
+            setTimeout(function () {
+                $exportBtn.prop('disabled', false).val(originalBtnValue);
+            }, 2000);
+        });
+    });
 
 })(jQuery);
