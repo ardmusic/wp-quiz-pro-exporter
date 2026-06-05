@@ -1,0 +1,3 @@
+## 2025-06-05 - [Accessibility & Feedback in File Downloads]
+**Learning:** File downloads in WordPress (triggered via admin-post.php) do not cause a page reload, so UI feedback (like loading states) must be manually reset using timeouts or state-change listeners. Additionally, nesting interactive elements (select + button) inside a single label is a common accessibility anti-pattern that obscures the purpose of each control for screen readers.
+**Action:** Use `wp_localize_script` for i18n feedback strings, implement a 2s timeout for download buttons, and always use explicit `for` attributes on labels instead of nesting multiple controls.
