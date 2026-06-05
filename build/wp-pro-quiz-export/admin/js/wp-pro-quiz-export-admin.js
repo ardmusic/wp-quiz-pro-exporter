@@ -11,7 +11,26 @@
             }
             else {
                 $("#btCSV").fadeIn(300);
+                // Reset button if it was in exporting state
+                var $btn = $("#btCSV");
+                if ($btn.data('original-value')) {
+                    $btn.val($btn.data('original-value')).prop('disabled', false);
+                }
             }
+        });
+
+        $('#btCSV').closest('form').on('submit', function () {
+            var $btn = $("#btCSV");
+            var originalValue = $btn.val();
+
+            $btn.data('original-value', originalValue);
+            $btn.val(wpProQuizExportAdmin.exporting).prop('disabled', true);
+
+            // Since it's a file download, we won't get a page reload.
+            // Re-enable the button after a timeout so the user can export again if needed.
+            setTimeout(function () {
+                $btn.val(originalValue).prop('disabled', false);
+            }, 2000);
         });
     });
 
