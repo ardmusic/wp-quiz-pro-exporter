@@ -1,0 +1,3 @@
+## 2025-05-14 - Form Submission & Loading States
+**Learning:** Disabling a submit button in its `click` handler can prevent its name/value from being sent in the POST request, which often breaks backend logic. Additionally, file downloads in WordPress admin don't trigger a page reload, leaving "loading" buttons stuck.
+**Action:** Always attach loading state logic to the form's `submit` event instead of the button's `click`. Use `setTimeout(..., 0)` to disable the button after the submission has been initiated by the browser. For actions that don't reload the page (like CSV exports), use a `setTimeout` to re-enable the button after a reasonable delay (e.g., 2s) to restore interactivity.

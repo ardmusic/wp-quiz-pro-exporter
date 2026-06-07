@@ -22,6 +22,7 @@ $arQuizzes = $wpdb->get_results('SELECT id AS id, CONCAT("[", id, "] ", name) AS
         <fieldset>
             <legend class="screen-reader-text"><span>Choose the quiz</span></legend>
             <label for="<?php echo $this->plugin_name; ?>-quiz">
+                <span class="screen-reader-text">Select a WP-Pro-Quiz</span>
                 <select id="<?php echo $this->plugin_name; ?>-quiz" name="<?php echo $this->plugin_name; ?>-quiz">
                     <option value="0">Select a WP-Pro-Quiz&hellip;</option>
                     <?php
@@ -33,10 +34,10 @@ $arQuizzes = $wpdb->get_results('SELECT id AS id, CONCAT("[", id, "] ", name) AS
                         }
                     }
                     ?>
-                </select>&nbsp;<input class="button-primary" type="submit" id="btCSV" value="&#8680; CSV"/>
-                <input type="hidden" name="action" value="csv-export"/>
-                <?php wp_nonce_field('csv-export', 'checksum'); ?>
-            </label>
+                </select>
+            </label>&nbsp;<input class="button-primary" type="submit" id="btCSV" value="&#8680; CSV" aria-label="Export statistics to CSV"/>
+            <input type="hidden" name="action" value="csv-export"/>
+            <?php wp_nonce_field('csv-export', 'checksum'); ?>
         </fieldset>
     </form>
 </div>
