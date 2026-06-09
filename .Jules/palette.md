@@ -1,0 +1,3 @@
+## 2025-05-15 - Improving Feedback for File Downloads
+**Learning:** File downloads in WordPress admin often happen via `admin-post.php`, which doesn't trigger a page reload. This leaves the user without feedback if the export takes time. A simple "Exporting..." state with a 2-second timeout provides the necessary confirmation. Additionally, buttons using Unicode symbols (like &#8680;) are inaccessible to screen readers without an explicit `aria-label`.
+**Action:** Always use a `submit` event listener on the form with a `setTimeout(..., 0)` to disable the button, ensuring the form data is still sent. Provide an `aria-label` for buttons containing symbols or icons.
