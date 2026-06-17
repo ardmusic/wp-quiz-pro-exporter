@@ -22,21 +22,22 @@ $arQuizzes = $wpdb->get_results('SELECT id AS id, CONCAT("[", id, "] ", name) AS
         <fieldset>
             <legend class="screen-reader-text"><span>Choose the quiz</span></legend>
             <label for="<?php echo $this->plugin_name; ?>-quiz">
-                <select id="<?php echo $this->plugin_name; ?>-quiz" name="<?php echo $this->plugin_name; ?>-quiz">
-                    <option value="0">Select a WP-Pro-Quiz&hellip;</option>
-                    <?php
-                    if (!empty($arQuizzes)) {
-                        foreach ($arQuizzes as $quiz) {
-                            ?>
-                            <option value="<?php echo $quiz['id']; ?>"><?php echo $quiz['name']; ?></option>
-                            <?php
-                        }
-                    }
-                    ?>
-                </select>&nbsp;<input class="button-primary" type="submit" id="btCSV" value="&#8680; CSV"/>
-                <input type="hidden" name="action" value="csv-export"/>
-                <?php wp_nonce_field('csv-export', 'checksum'); ?>
+                <span class="screen-reader-text"><?php _e('Select a WP-Pro-Quiz', 'wp-pro-quiz-export'); ?></span>
             </label>
+            <select id="<?php echo $this->plugin_name; ?>-quiz" name="<?php echo $this->plugin_name; ?>-quiz">
+                <option value="0"><?php _e('Select a WP-Pro-Quiz&hellip;', 'wp-pro-quiz-export'); ?></option>
+                <?php
+                if (!empty($arQuizzes)) {
+                    foreach ($arQuizzes as $quiz) {
+                        ?>
+                        <option value="<?php echo $quiz['id']; ?>"><?php echo $quiz['name']; ?></option>
+                        <?php
+                    }
+                }
+                ?>
+            </select>&nbsp;<input class="button-primary" type="submit" id="btCSV" value="&#8680; CSV" aria-label="<?php esc_attr_e('Export Statistics to CSV', 'wp-pro-quiz-export'); ?>"/>
+            <input type="hidden" name="action" value="csv-export"/>
+            <?php wp_nonce_field('csv-export', 'checksum'); ?>
         </fieldset>
     </form>
 </div>

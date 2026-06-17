@@ -1,0 +1,3 @@
+## 2025-05-14 - [CSV Export Loading State and Label Nesting]
+**Learning:** For actions like CSV exports that trigger a browser download without page navigation, a manual timeout (e.g., 2000ms) is an effective way to restore button states since there is no standard JS event for "download complete". Additionally, nesting multiple interactive elements (selects, buttons) inside a single `<label>` is an accessibility anti-pattern that breaks screen reader associations.
+**Action:** Use separate labels with `for` attributes and `.screen-reader-text` for visual consistency, and implement micro-UX feedback with a defensive restoration timeout for file downloads.
