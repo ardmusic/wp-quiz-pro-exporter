@@ -2,16 +2,34 @@
     'use strict';
 
     $(function () {
+        var $btn = $("#btCSV");
+        var originalBtnValue = $btn.val();
+
         if ($("select[id$='-quiz']").val() == 0) {
-            $("#btCSV").hide();
+            $btn.hide();
         }
         $("select[id$='-quiz']").change(function () {
             if ($(this).val() == 0) {
-                $("#btCSV").fadeOut(100);
+                $btn.fadeOut(100);
             }
             else {
-                $("#btCSV").fadeIn(300);
+                $btn.fadeIn(300);
             }
+            // Reset button state on change
+            $btn.prop('disabled', false).val(originalBtnValue);
+        });
+
+        $btn.closest('form').on('submit', function () {
+            $btn.val(wpProQuizExportAdmin.exporting);
+            // Use setTimeout to ensure the form is submitted before disabling the button
+            setTimeout(function () {
+                $btn.prop('disabled', true);
+            }, 0);
+
+            // Re-enable after a timeout since the download doesn't trigger a page reload
+            setTimeout(function () {
+                $btn.prop('disabled', false).val(originalBtnValue);
+            }, 2000);
         });
     });
 
