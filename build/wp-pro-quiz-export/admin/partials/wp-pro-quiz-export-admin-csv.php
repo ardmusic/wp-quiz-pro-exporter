@@ -139,8 +139,10 @@ if (isset($_POST['checksum']) && wp_verify_nonce($_POST['checksum'], 'csv-export
                 fputcsv($outputCSV, $arCSVRow);
             }
         }
+    } else {
+        wp_die(__('No data found for this quiz.', 'wp-pro-quiz-export'));
     }
 }
 else {
-    die('unauthroized access attempt');
+    wp_die(__('unauthorized access attempt', 'wp-pro-quiz-export'));
 }
