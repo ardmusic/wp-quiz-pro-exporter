@@ -1,0 +1,3 @@
+## 2025-05-14 - [Accessibility] decoupling nested interactive elements from labels
+**Learning:** Nesting multiple interactive elements (like a `<select>` and a submit button) within a single `<label>` tag creates a confusing experience for screen reader users and is non-semantic. Standard WordPress practices favor using the `for` attribute on labels and the `.screen-reader-text` class for visually hidden yet accessible labels.
+**Action:** Always separate interactive elements from their labels, use the `for` attribute for explicit association, and use `.screen-reader-text` for labels that should only be available to assistive technologies.
