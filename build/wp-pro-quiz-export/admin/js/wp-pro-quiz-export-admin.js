@@ -13,6 +13,21 @@
                 $("#btCSV").fadeIn(300);
             }
         });
+
+        $('#btCSV').closest('form').on('submit', function () {
+            var $btn = $('#btCSV');
+            var originalValue = $btn.val();
+
+            // Use setTimeout to ensure the form submission is initiated before disabling the button
+            setTimeout(function () {
+                $btn.val(wpProQuizExportAdmin.exporting).prop('disabled', true);
+            }, 0);
+
+            // Restore button state after a delay (simulating download initiation)
+            setTimeout(function () {
+                $btn.val(originalValue).prop('disabled', false);
+            }, 2000);
+        });
     });
 
     /**
