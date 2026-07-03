@@ -1,0 +1,3 @@
+## 2024-05-24 - Handling Loading States for Non-Navigating Actions (CSV Downloads)
+**Learning:** For actions like CSV exports that trigger a file download without a page reload (via `admin-post.php` in WordPress), a button's "loading" or "disabled" state must be manually reset using a timeout, as there's no page-load event to trigger the restoration. Additionally, when buttons contain Unicode entities (e.g., `&#8680;`), capturing the original value from the DOM on page load is more reliable for restoration than hardcoding the string in JavaScript.
+**Action:** Always implement a restoration timeout for non-navigating actions and capture initial DOM values for UI elements that contain special characters or entities.
