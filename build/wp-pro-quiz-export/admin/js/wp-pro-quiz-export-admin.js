@@ -2,16 +2,28 @@
     'use strict';
 
     $(function () {
+        var $btnCSV = $("#btCSV");
+        var originalBtnVal = $btnCSV.val();
+
         if ($("select[id$='-quiz']").val() == 0) {
-            $("#btCSV").hide();
+            $btnCSV.hide();
         }
+
         $("select[id$='-quiz']").change(function () {
             if ($(this).val() == 0) {
-                $("#btCSV").fadeOut(100);
+                $btnCSV.fadeOut(100);
             }
             else {
-                $("#btCSV").fadeIn(300);
+                $btnCSV.fadeIn(300);
             }
+        });
+
+        $btnCSV.closest('form').on('submit', function () {
+            $btnCSV.val(wpProQuizExportAdmin.exporting).prop('disabled', true);
+
+            setTimeout(function () {
+                $btnCSV.val(originalBtnVal).prop('disabled', false);
+            }, 2000);
         });
     });
 
