@@ -1,0 +1,3 @@
+## 2026-07-06 - [Robust loading states for CSV exports]
+**Learning:** For actions like CSV downloads that don't trigger a page reload, providing a temporary "loading" state (disabled + text change) with a timeout fallback improves perceived performance. To ensure compatibility with Unicode symbols in button text, capture the original value from the DOM on load rather than hardcoding it in JS.
+**Action:** Use `setTimeout` to revert button states on background actions, and always attach loading logic to the `submit` event of the form to ensure standard browser form processing is not interrupted by disabling the button too early.
