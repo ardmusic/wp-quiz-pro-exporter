@@ -1,0 +1,3 @@
+## 2025-05-14 - Loading states for file downloads
+**Learning:** For actions that trigger a file download (like CSV exports), the page doesn't reload, leaving the user without feedback. A temporary loading state (disabling the button and changing text) followed by a 2000ms timeout to revert the state provides a good balance of feedback and recovery.
+**Action:** Use a submit event listener on the form and a timeout to restore the button state for file download interactions. Always capture the original button value at the start of the interaction to ensure accurate restoration, especially if it contains special characters or icons.
