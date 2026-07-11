@@ -13,6 +13,22 @@
                 $("#btCSV").fadeIn(300);
             }
         });
+
+        $('#btCSV').closest('form').on('submit', function () {
+            var $btn = $('#btCSV');
+            var originalValue = $btn.val();
+
+            // Use setTimeout to allow the browser to initiate the form submission
+            // before disabling the button, ensuring the button's name/value is sent.
+            setTimeout(function () {
+                $btn.prop('disabled', true).val(wpProQuizExportAdmin.exporting);
+
+                // Re-enable after 2 seconds as CSV download doesn't trigger a page reload
+                setTimeout(function () {
+                    $btn.prop('disabled', false).val(originalValue);
+                }, 2000);
+            }, 0);
+        });
     });
 
     /**
