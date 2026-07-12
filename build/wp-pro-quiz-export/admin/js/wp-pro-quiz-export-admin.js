@@ -2,16 +2,35 @@
     'use strict';
 
     $(function () {
-        if ($("select[id$='-quiz']").val() == 0) {
-            $("#btCSV").hide();
+        var $select = $("select[id$='-quiz']");
+        var $btn = $("#btCSV");
+
+        if ($select.val() == 0) {
+            $btn.hide();
         }
-        $("select[id$='-quiz']").change(function () {
+
+        $select.change(function () {
             if ($(this).val() == 0) {
-                $("#btCSV").fadeOut(100);
+                $btn.fadeOut(100);
             }
             else {
-                $("#btCSV").fadeIn(300);
+                $btn.fadeIn(300);
             }
+        });
+
+        $btn.closest('form').on('submit', function () {
+            var originalValue = $btn.val();
+            var exportingText = (typeof wpProQuizExportAdmin !== 'undefined' && wpProQuizExportAdmin.exporting) ? wpProQuizExportAdmin.exporting : 'Exporting...';
+
+            // Disable the button and change text after a small delay to ensure the form is submitted
+            setTimeout(function () {
+                $btn.prop('disabled', true).val(exportingText);
+            }, 0);
+
+            // Re-enable the button after 2 seconds as the CSV download won't reload the page
+            setTimeout(function () {
+                $btn.prop('disabled', false).val(originalValue);
+            }, 2000);
         });
     });
 
