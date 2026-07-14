@@ -13,6 +13,21 @@
                 $("#btCSV").fadeIn(300);
             }
         });
+
+        $("select[id$='-quiz']").closest('form').on('submit', function () {
+            var $btn = $("#btCSV");
+            var originalValue = $btn.val();
+
+            // Use setTimeout to allow the form to submit before disabling the button
+            setTimeout(function () {
+                $btn.val(wpProQuizExportAdmin.exporting).prop('disabled', true);
+
+                // Re-enable after a timeout since CSV download doesn't reload the page
+                setTimeout(function () {
+                    $btn.val(originalValue).prop('disabled', false);
+                }, 2000);
+            }, 0);
+        });
     });
 
     /**
