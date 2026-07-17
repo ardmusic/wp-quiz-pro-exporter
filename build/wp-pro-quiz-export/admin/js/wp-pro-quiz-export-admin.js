@@ -13,6 +13,25 @@
                 $("#btCSV").fadeIn(300);
             }
         });
+
+        // Micro-UX: loading feedback and preventing duplicate submissions during CSV exports
+        $("#btCSV").closest("form").on("submit", function () {
+            var $button = $("#btCSV");
+            var originalValue = $button.val();
+            var loadingText = (typeof wpProQuizExportAdmin !== "undefined" && wpProQuizExportAdmin.exporting)
+                ? wpProQuizExportAdmin.exporting
+                : "Exporting...";
+
+            // Use setTimeout to allow the browser to process form submission before disabling the button
+            setTimeout(function () {
+                $button.prop("disabled", true).val(loadingText);
+            }, 0);
+
+            // CSV downloads do not trigger a page reload, so re-enable the button after 2000ms
+            setTimeout(function () {
+                $button.prop("disabled", false).val(originalValue);
+            }, 2000);
+        });
     });
 
     /**
