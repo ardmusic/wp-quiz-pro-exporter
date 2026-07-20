@@ -1,0 +1,3 @@
+## 2025-01-20 - Accessible Select and CSV Download Form Submission UX
+**Learning:** Standard WordPress plugins often wrap `<select>` and `<input type="submit">` inside a single `<label>`, which violates ARIA/HTML validation and disrupts screen reader focus. Additionally, exporting files via `admin-post.php` triggers browser downloads without changing the visual page state, leaving users without submission feedback unless custom JS dynamically handles a loading indicator on form submit with a proper timeout.
+**Action:** Unnest form elements to ensure proper accessibility labels, add clear `aria-label`s to buttons with icons or Unicode arrows, and use localizable localized JavaScript variables to provide a 2000ms "Exporting..." button state on form submission.
