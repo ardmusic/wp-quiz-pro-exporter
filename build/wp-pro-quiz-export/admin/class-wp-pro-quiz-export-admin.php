@@ -96,6 +96,14 @@ class Wp_Pro_Quiz_Export_Admin
          * class.
          */
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/wp-pro-quiz-export-admin.js', array('jquery'), $this->version, false);
+
+        wp_localize_script(
+            $this->plugin_name,
+            'wpProQuizExportAdmin',
+            array(
+                'exporting' => __('Exporting...', 'wp-pro-quiz-export')
+            )
+        );
     }
 
     /**

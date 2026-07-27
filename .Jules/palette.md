@@ -1,0 +1,3 @@
+## 2024-07-27 - Nesting Form Elements inside WordPress Labels
+**Learning:** Nesting both a `<select>` drop-down and a submit `<input>` element inside a single `<label>` element degrades accessibility and makes screen-reader interpretation difficult. Unnesting these elements, associating the label correctly with `for` and `id`, and employing WordPress's native `.screen-reader-text` utility ensures maximum compliance with accessibility standards while maintaining design cohesion.
+**Action:** Always structure WordPress form layouts to keep interactive fields and submit buttons unnested and properly labeled. Use separate `<label>` tags with screen-reader text where visual labels are implicit, and assign clear `aria-label` tags to icon-only or symbol-only buttons.
