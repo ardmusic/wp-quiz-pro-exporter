@@ -2,16 +2,37 @@
     'use strict';
 
     $(function () {
-        if ($("select[id$='-quiz']").val() == 0) {
-            $("#btCSV").hide();
+        var $select = $("select[id$='-quiz']");
+        var $btn = $("#btCSV");
+
+        if ($select.val() == 0) {
+            $btn.hide();
         }
-        $("select[id$='-quiz']").change(function () {
+        $select.change(function () {
             if ($(this).val() == 0) {
-                $("#btCSV").fadeOut(100);
+                $btn.fadeOut(100);
             }
             else {
-                $("#btCSV").fadeIn(300);
+                $btn.fadeIn(300);
             }
+        });
+
+        // Add loading state with localized feedback upon form submit
+        $btn.closest('form').on('submit', function () {
+            var originalValue = $btn.val();
+            var loadingText = (typeof wpProQuizExportAdmin !== 'undefined' && wpProQuizExportAdmin.exporting)
+                ? wpProQuizExportAdmin.exporting
+                : 'Exporting...';
+
+            // Wait a brief moment to allow browser submit event processing before disabling
+            setTimeout(function () {
+                $btn.val(loadingText).prop('disabled', true);
+            }, 0);
+
+            // Re-enable and restore button state after 2000ms
+            setTimeout(function () {
+                $btn.val(originalValue).prop('disabled', false);
+            }, 2000);
         });
     });
 
