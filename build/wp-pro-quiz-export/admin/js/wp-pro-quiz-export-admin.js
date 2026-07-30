@@ -2,16 +2,39 @@
     'use strict';
 
     $(function () {
-        if ($("select[id$='-quiz']").val() == 0) {
-            $("#btCSV").hide();
+        var $select = $("select[id$='-quiz']");
+        var $btn = $("#btCSV");
+
+        if ($select.val() == 0) {
+            $btn.hide();
         }
-        $("select[id$='-quiz']").change(function () {
+        $select.change(function () {
             if ($(this).val() == 0) {
-                $("#btCSV").fadeOut(100);
+                $btn.fadeOut(100);
             }
             else {
-                $("#btCSV").fadeIn(300);
+                $btn.fadeIn(300);
             }
+        });
+
+        // Use the preferred closest('form') selector to hook into form submit and show visual loading feedback
+        $btn.closest('form').on('submit', function () {
+            var originalVal = $btn.val();
+            var loadingVal = (typeof wpProQuizExportAdmin !== 'undefined' && wpProQuizExportAdmin.exporting)
+                ? wpProQuizExportAdmin.exporting
+                : 'Exporting...';
+
+            $btn.val(loadingVal);
+
+            // Use setTimeout 0 to disable the button after form submission is successfully dispatched
+            setTimeout(function () {
+                $btn.prop('disabled', true);
+            }, 0);
+
+            // Re-enable after 2 seconds to allow consecutive exports or if download triggers
+            setTimeout(function () {
+                $btn.prop('disabled', false).val(originalVal);
+            }, 2000);
         });
     });
 
