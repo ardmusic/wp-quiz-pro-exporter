@@ -1,0 +1,3 @@
+## 2025-01-20 - Accessible WordPress Labels and Async State
+**Learning:** Nesting select and input fields inside `<label>` element confuses screen readers and breaks native form behaviors. Separating fields, using explicit matching `id`/`for` attributes, and utilizing WordPress `.screen-reader-text` classes maintains layout while ensuring high accessibility. Additionally, updating buttons to a disabled state on submit must be deferred to a 0ms `setTimeout` so that the submit event data is properly parsed by the browser.
+**Action:** Always avoid nesting multiple interactive elements inside a single label, and always use standard WordPress sanitization and `.screen-reader-text` wrappers.
