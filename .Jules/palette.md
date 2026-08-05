@@ -1,0 +1,3 @@
+## 2025-08-05 - WordPress Button Loading State and Accessibility Fix
+**Learning:** Nested interactive elements (like select and submit elements) inside a single `<label>` is a severe accessibility issue that confuses screen readers. Separating them and adding explicit `aria-label` to symbol-only buttons significantly improves accessibility. For file-downloading actions that do not trigger a page refresh, using a 2-second timeout to re-enable the button prevents duplicate submissions while restoring the UI.
+**Action:** Always inspect forms for nested elements in `<label>` tags, add descriptive screen-reader-only labels and `aria-label`s on icon/symbol buttons, and implement timed UI restoration for file downloads.
