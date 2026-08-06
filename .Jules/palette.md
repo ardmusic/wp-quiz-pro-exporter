@@ -1,0 +1,3 @@
+## 2024-08-06 - Interactive Form Labels and Accessible Icon Buttons
+**Learning:** Placing multiple interactive elements (such as select dropdowns and submit buttons) inside a single `<label>` element confuses screen readers and disrupts proper accessible form tree mappings. Additionally, submit buttons containing only icons or arrows (like unicode character `&#8680;`) must have descriptive `aria-label` properties so their purpose is transparent to assistive technologies.
+**Action:** Always break multiple interactive inputs out of a single `<label>` container and use separate labels (or hidden `.screen-reader-text` labels if the visual label is implicit). Always add explicit `aria-label` attributes to icon-only buttons.
