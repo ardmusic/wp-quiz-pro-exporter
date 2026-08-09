@@ -1,0 +1,5 @@
+# Palette's UX/A11y Journal
+
+## 2024-08-09 - Accessible CSV Exports and Form Submission Micro-UX
+**Learning:** When adding a loading state (such as changing button text to "Exporting...") to form submissions that trigger file downloads (like CSV exports handled via admin-post.php), disabling the button directly inside a click handler can prevent the browser from sending the button's name and value in the form data. This is particularly problematic in WordPress where plugins often rely on the submit button's name/value for specific actions. Additionally, nesting interactive elements (like select/input) inside a label is a common markup mistake that breaks screen reader accessibility.
+**Action:** Always bind loading states to the form's `submit` event instead of the button's `click` event, and use `setTimeout(..., 0)` to defer disabling the button until after the browser has initiated the form submission request. For accessibility, always separate the select and input from the label, associating them using `for` and `id` attributes, and use `.screen-reader-text` inside the labels for screen-reader-only context.
