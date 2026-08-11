@@ -2,16 +2,42 @@
     'use strict';
 
     $(function () {
-        if ($("select[id$='-quiz']").val() == 0) {
-            $("#btCSV").hide();
+        var $select = $("select[id$='-quiz']");
+        var $button = $("#btCSV");
+
+        if ($select.val() == 0) {
+            $button.hide();
         }
-        $("select[id$='-quiz']").change(function () {
+        $select.change(function () {
             if ($(this).val() == 0) {
-                $("#btCSV").fadeOut(100);
+                $button.fadeOut(100);
             }
             else {
-                $("#btCSV").fadeIn(300);
+                $button.fadeIn(300);
             }
+        });
+
+        // Micro-UX enhancements for long-running CSV download
+        $select.closest('form').on('submit', function (e) {
+            var originalVal = $button.val();
+            var originalAria = $button.attr('aria-label');
+            var loadingText = (typeof wpProQuizExportAdmin !== 'undefined' && wpProQuizExportAdmin.exporting) ? wpProQuizExportAdmin.exporting : 'Exporting...';
+
+            setTimeout(function () {
+                $button.val(loadingText);
+                $button.attr('aria-label', loadingText);
+                $button.prop('disabled', true);
+            }, 0);
+
+            setTimeout(function () {
+                $button.prop('disabled', false);
+                $button.val(originalVal);
+                if (originalAria) {
+                    $button.attr('aria-label', originalAria);
+                } else {
+                    $button.removeAttr('aria-label');
+                }
+            }, 2000);
         });
     });
 

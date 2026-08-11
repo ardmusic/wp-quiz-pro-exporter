@@ -1,0 +1,3 @@
+## 2025-03-05 - WordPress Button Loading State and Accessibility Integration
+**Learning:** In traditional WordPress environments where CSV exports are triggered via admin-post.php directly, standard button disabling during submit can cancel browser submission if not handled properly. Using setTimeout with 0ms delay to disable the button after the browser has accepted the submit action allows the file download to begin smoothly while preventing double clicks.
+**Action:** Always wrap button disabling and text modifications on form submit inside a `setTimeout(..., 0)` block to prevent halting the default form submit action. Ensure the button's input value remains synchronized with ARIA labels to maintain accessible visual-to-speech correspondence.
