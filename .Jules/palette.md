@@ -1,0 +1,3 @@
+## 2024-08-12 - WordPress Form Submission Loading Feedback with CSV Downloads
+**Learning:** CSV file exports handled via `admin-post.php` are completed without a browser page reload. Disabling the submit button indefinitely to prevent multiple clicks can lock the UI. A 2-second timeout to re-enable the button and restore original text (like "⇨ CSV") is highly effective.
+**Action:** Always attach interaction logic to the form's submit event rather than click event to allow validation, and use a setTimeout with 0ms delay to disable the button, followed by a 2000ms timeout to restore it for async file downloads.
