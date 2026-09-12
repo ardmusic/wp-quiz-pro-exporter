@@ -13,6 +13,19 @@
                 $("#btCSV").fadeIn(300);
             }
         });
+
+        $('#btCSV').closest('form').on('submit', function () {
+            var $btn = $('#btCSV');
+            var originalText = $btn.val();
+            var exportingText = (typeof wpProQuizExportAdmin !== 'undefined' && wpProQuizExportAdmin.exporting) ? wpProQuizExportAdmin.exporting : 'Exporting...';
+
+            setTimeout(function () {
+                $btn.val(exportingText).prop('disabled', true);
+                setTimeout(function () {
+                    $btn.val(originalText).prop('disabled', false);
+                }, 2000);
+            }, 0);
+        });
     });
 
     /**
