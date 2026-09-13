@@ -1,0 +1,3 @@
+## 2025-05-18 - Form Label Nesting & Action Feedback
+**Learning:** Wrapping multiple interactive elements inside a single `<label>` tag causes severe accessibility issues with screen readers and focus management. Furthermore, file downloads triggered via form actions (like `admin-post.php`) don't reload the page, so submit buttons benefit greatly from brief disabled loading states to indicate action without blocking user recovery.
+**Action:** Un-nest controls and provide dedicated `for` labels or `aria-label`s, and handle background submit actions using a temporary timeout state on the submit button.
