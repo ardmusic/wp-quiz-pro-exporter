@@ -33,10 +33,10 @@ $arQuizzes = $wpdb->get_results('SELECT id AS id, CONCAT("[", id, "] ", name) AS
                         }
                     }
                     ?>
-                </select>&nbsp;<input class="button-primary" type="submit" id="btCSV" value="&#8680; CSV"/>
-                <input type="hidden" name="action" value="csv-export"/>
-                <?php wp_nonce_field('csv-export', 'checksum'); ?>
-            </label>
+                </select>
+            </label>&nbsp;<input class="button-primary" type="submit" id="btCSV" value="&#8680; CSV" aria-label="Export statistics to CSV"/>
+            <input type="hidden" name="action" value="csv-export"/>
+            <?php wp_nonce_field('csv-export', 'checksum'); ?>
         </fieldset>
     </form>
 </div>
