@@ -10,8 +10,22 @@
                 $("#btCSV").fadeOut(100);
             }
             else {
-                $("#btCSV").fadeIn(300);
+                $("#btCSV").prop("disabled", false).fadeIn(300);
             }
+        });
+
+        var $btn = $("#btCSV");
+        $btn.closest("form").on("submit", function () {
+            var originalVal = $btn.val();
+            var exportingText = (typeof wpProQuizExportAdmin !== 'undefined' && wpProQuizExportAdmin.exporting) ? wpProQuizExportAdmin.exporting : 'Exporting...';
+
+            setTimeout(function () {
+                $btn.prop("disabled", true).val(exportingText);
+            }, 0);
+
+            setTimeout(function () {
+                $btn.prop("disabled", false).val(originalVal);
+            }, 2000);
         });
     });
 
