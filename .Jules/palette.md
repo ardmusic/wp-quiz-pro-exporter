@@ -1,0 +1,3 @@
+## 2025-09-19 - Accessible Form Field Structure & Export Feedback State
+**Learning:** Wrapping `<select>`, `<input type="submit">`, and hidden inputs together inside a `<label>` element breaks standard accessibility relationships and prevents screen readers from properly parsing the select field label. Furthermore, CSV exports via `admin-post.php` leave the user without immediate feedback unless the submit button reflects a loading state (`Exporting...`) and briefly disables itself.
+**Action:** Always unnest interactive submit inputs from `<label>` elements, provide explicit screen reader labels for controls, and use localized JS strings via `wp_localize_script()` to provide non-blocking loading feedback upon form submit.
