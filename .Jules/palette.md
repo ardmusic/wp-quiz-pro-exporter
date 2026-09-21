@@ -1,0 +1,3 @@
+## 2025-09-21 - Accessible Form Controls and Submission Feedback in WordPress Admin
+**Learning:** Nesting form controls inside a `<label>` tag creates accessibility issues and limits control styling. Additionally, icon/symbol-only submit buttons (e.g. `⇨ CSV`) lack screen reader context without explicit `aria-label` or accessible text.
+**Action:** Unnest form inputs from `<label>` tags, add explicit screen-reader labels (`.screen-reader-text`), add `aria-label` to symbol-only submit buttons, and pass localized loading strings via `wp_localize_script()` to provide disabled loading state feedback during async/post actions.
