@@ -1,0 +1,3 @@
+## 2025-05-18 - CSV Export Loading State & Form Label Unnesting
+**Learning:** Wrapping multiple interactive elements (`<select>`, `<input type="submit">`) inside a single `<label>` tag breaks screen reader label scoping and element focus. Additionally, file export submissions handled via `admin-post.php` do not trigger page reloads, making visual submit button state updates essential for user feedback.
+**Action:** Unnest interactive elements into distinct controls with explicit `for`/`id` labels or `.screen-reader-text` labels, and provide temporary localized disabled loading states during file generation.
