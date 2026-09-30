@@ -2,16 +2,34 @@
     'use strict';
 
     $(function () {
+        var $btn = $("#btCSV");
+
         if ($("select[id$='-quiz']").val() == 0) {
-            $("#btCSV").hide();
+            $btn.hide();
         }
         $("select[id$='-quiz']").change(function () {
             if ($(this).val() == 0) {
-                $("#btCSV").fadeOut(100);
+                $btn.fadeOut(100);
             }
             else {
-                $("#btCSV").fadeIn(300);
+                $btn.fadeIn(300);
             }
+        });
+
+        $btn.closest('form').on('submit', function () {
+            var originalVal = $btn.val();
+            var loadingText = (typeof wpProQuizExportAdmin !== 'undefined' && wpProQuizExportAdmin.exporting)
+                ? wpProQuizExportAdmin.exporting
+                : 'Exporting...';
+
+            $btn.val(loadingText);
+            setTimeout(function () {
+                $btn.prop('disabled', true);
+            }, 0);
+
+            setTimeout(function () {
+                $btn.prop('disabled', false).val(originalVal);
+            }, 2000);
         });
     });
 

@@ -1,0 +1,3 @@
+## 2025-09-30 - Interactive Loading Feedback & Accessibility for Admin Export Form
+**Learning:** In WordPress admin pages triggering file downloads (like CSV generation via `admin-post.php`), standard form submissions don't trigger a page refresh, which can leave users uncertain if their export request was received. Furthermore, wrapping multiple interactive elements inside a single `<label>` tag creates broken accessibility trees for screen reader users.
+**Action:** Un-nest interactive form elements, use explicit screen-reader labels with matching `for` attributes, provide `aria-label` for symbol-based buttons, and attach a `submit` listener with `setTimeout(..., 0)` to show immediate feedback ("Exporting...") while preventing duplicate clicks.
