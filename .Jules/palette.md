@@ -1,0 +1,4 @@
+## 2024-10-08 - Unnesting Interactive Form Controls and Asynchronous Submit Loading States
+
+**Learning:** Wrapping multiple interactive elements (`<select>` and `<input type="submit">`) inside a single `<label>` tag breaks screen reader label association. Separating the `<label>` and attaching `aria-label` to symbol buttons improves accessibility. For file-download submit forms that don't reload the page, setting a loading state via `setTimeout(..., 0)` on form submit and resetting after a timeout ensures feedback while preserving form POST payloads.
+**Action:** Always separate `<label>` tags from wrapping other interactive elements and use `aria-label` for symbol/icon symbol buttons. Use `setTimeout(..., 0)` on submit handlers when disabling buttons to prevent omitting button values from form submission.
