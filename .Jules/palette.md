@@ -1,0 +1,3 @@
+## 2025-05-18 - Unnest Form Controls and Add ARIA Labels
+**Learning:** Nesting form controls like `<select>` and `<input type="submit">` inside a single `<label>` element creates invalid HTML structure and causes confusion for screen readers. Explicitly associating `<label for="...">` with visually hidden text (`screen-reader-text`) and providing descriptive `aria-label` attributes on icon-only or symbol buttons significantly improves accessibility without affecting visual layout.
+**Action:** Always verify that interactive inputs have explicit label associations and distinct ARIA labels when using Unicode or icon labels.
