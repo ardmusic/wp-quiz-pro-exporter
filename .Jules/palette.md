@@ -1,0 +1,3 @@
+## 2024-10-14 - Admin Form Structure & Loading States
+**Learning:** Avoid wrapping multiple interactive elements inside a single `<label>` tag in WordPress admin forms as it causes invalid HTML markup and accessibility issues for screen readers. Additionally, attaching form submission loading states using `setTimeout(..., 0)` inside the `submit` event handler allows native browser submission while offering immediate visual feedback and disabling double submission.
+**Action:** Always separate `<select>` and `<input>` elements into distinct form controls with explicit labels (e.g., using `.screen-reader-text` where appropriate) and handle submit button loading states via form `submit` handlers.
