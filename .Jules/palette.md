@@ -1,0 +1,3 @@
+## 2025-10-17 - CSV Export Loading Feedback and Form Accessibility
+**Learning:** For file download forms (like CSV export via admin-post.php), standard form submission does not reload the page, leaving users uncertain if the action succeeded. Un-nesting interactive elements from `<label>` tags and adding `aria-label` to icon/symbol-only submit buttons dramatically improves screen reader navigation.
+**Action:** When working with file downloads or non-reloading form submissions, update the submit button text to a localized loading state (e.g. "Exporting...") and disable it briefly via JavaScript submit handler, while ensuring proper label-input separation and explicit `aria-label` attributes.
