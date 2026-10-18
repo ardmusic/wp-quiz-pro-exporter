@@ -142,5 +142,9 @@ if (isset($_POST['checksum']) && wp_verify_nonce($_POST['checksum'], 'csv-export
     }
 }
 else {
-    die('unauthroized access attempt');
+    wp_die(
+        esc_html__( 'Unauthorized access attempt.', 'wp-pro-quiz-export' ),
+        esc_html__( 'Error', 'wp-pro-quiz-export' ),
+        array( 'response' => 403 )
+    );
 }
