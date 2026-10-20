@@ -1,0 +1,3 @@
+## 2025-05-18 - CSV Export Form Accessibility & Loading Feedback
+**Learning:** Wrapping interactive elements like `<input type="submit">` inside `<label>` creates an invalid HTML structure and confusing accessibility tree for screen readers. Furthermore, disabling a submit button immediately in a `click` event handler can prevent form submission; using `setTimeout(..., 0)` inside the `submit` event handler allows standard submission while providing instant UX feedback for background file downloads.
+**Action:** Unnest submit buttons from form labels, assign explicit `aria-label` to visual/symbolic buttons, and attach loading state logic with `setTimeout` to form `submit` events.
