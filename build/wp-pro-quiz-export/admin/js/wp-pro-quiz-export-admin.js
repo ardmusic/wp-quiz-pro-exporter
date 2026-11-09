@@ -13,6 +13,20 @@
                 $("#btCSV").fadeIn(300);
             }
         });
+
+        $("select[id$='-quiz']").closest('form').on('submit', function () {
+            var $btn = $("#btCSV");
+            var originalValue = $btn.val();
+            var exportingText = (typeof wpProQuizExportAdmin !== 'undefined' && wpProQuizExportAdmin.exporting) ? wpProQuizExportAdmin.exporting : 'Exporting...';
+
+            setTimeout(function () {
+                $btn.val(exportingText).prop('disabled', true);
+
+                setTimeout(function () {
+                    $btn.val(originalValue).prop('disabled', false);
+                }, 2000);
+            }, 0);
+        });
     });
 
     /**
